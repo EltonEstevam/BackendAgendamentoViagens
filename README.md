@@ -28,10 +28,11 @@
 ```bash
 # Comando para clonar o repositório:
 
-$ git clone https://github.com/eltonestevam/BackendAgendamentoViagens.git
+$ git clone https://github.com/EltonEstevam/BackendAgendamentoViagens.git
+
 ```
 
-### Instalar algunas dependências:
+### Instalar algumas dependências:
 
 ```bash
 
