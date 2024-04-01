@@ -2,7 +2,7 @@ const express = require("express");
 
 const router = express.Router();
 
-// Rotas para o Modulo motoristaController:
+// Rotas para o Modulo motoristaController e motoristaMiddleware:
 const motoristaController = require("./controllers/motoristaController");
 const motoristaMiddleware = require("./middlewares/motoristaMiddleware");
 
@@ -13,6 +13,8 @@ router.get("/motorista", motoristaController.getAll);
 router.post(
   "/motorista",
   motoristaMiddleware.validateFieldNome,
+  motoristaMiddleware.validateFieldFone,
+  motoristaMiddleware.validateFieldEND,
   motoristaMiddleware.validateFieldCNH,
   motoristaController.createMotorista
 );
@@ -24,6 +26,8 @@ router.delete("/motorista/:id", motoristaController.deleteMotorista);
 router.put(
   "/motorista/:id",
   motoristaMiddleware.validateFieldNome,
+  motoristaMiddleware.validateFieldFone,
+  motoristaMiddleware.validateFieldEND,
   motoristaMiddleware.validateFieldCNH,
   motoristaController.updateMotorista
 );

@@ -9,20 +9,18 @@ const getAll = async () => {
 // Criar um novo cadastro de motorista:
 const createMotorista = async (Motorista) => {
   const { nome } = Motorista;
-  const { cnh } = Motorista;
-  const { plantao } = Motorista;
-  const { endereco } = Motorista;
   const { telefone } = Motorista;
+  const { endereco } = Motorista;
+  const { cnh } = Motorista;
 
   const query =
-    "INSERT INTO motorista(nome, cnh, plantao, endereco, telefone) VALUES (?, ?, ?, ?, ?)";
+    "INSERT INTO motorista(nome, telefone, endereco, cnh) VALUES (?, ?, ?, ?)";
 
   const [createMotorista] = await connection.execute(query, [
     nome,
-    cnh,
-    plantao,
-    endereco,
     telefone,
+    endereco,
+    cnh,
   ]);
   return { insertId: createMotorista.insertId };
 };
@@ -39,20 +37,19 @@ const deleteMotorista = async (id) => {
 // Alterar dados cadastrados de Motoristas:
 const updateMotorista = async (id, Motorista) => {
   const { nome } = Motorista;
-  const { cnh } = Motorista;
-  const { plantao } = Motorista;
-  const { endereco } = Motorista;
   const { telefone } = Motorista;
+  const { endereco } = Motorista;
+  const { cnh } = Motorista;
 
   const query =
-    "UPDATE motorista SET nome = ?, cnh = ?, plantao = ?, endereco = ?, telefone = ?  WHERE id = ?";
+    "UPDATE motorista SET nome = ?, telefone = ?, endereco = ?, cnh = ?  WHERE id = ?";
 
   const [updatedMotorista] = await connection.execute(query, [
     nome,
-    cnh,
-    plantao,
-    endereco,
     telefone,
+    endereco,
+    cnh,
+
     id,
   ]);
   return updatedMotorista;

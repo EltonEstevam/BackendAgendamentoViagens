@@ -37,10 +37,7 @@ $ git clone https://github.com/EltonEstevam/BackendAgendamentoViagens.git
 ```bash
 
 # \BackendAgendamentoViagens\backend> npm init -y
-# \BackendAgendamentoViagens\backend> npm install express
-# \BackendAgendamentoViagens\backend> npm install cors
-# \BackendAgendamentoViagens\backend> npm install mysql2
-# \BackendAgendamentoViagens\backend> npm install dotenv
+# \BackendAgendamentoViagens\backend> npm install express cors mysql2 dotenv
 # \BackendAgendamentoViagens\backend> npm install nodemon -D
 # \BackendAgendamentoViagens\backend> npx eslint --init
 Need to install the following packages:
@@ -83,10 +80,9 @@ $ CREATE DATABASE agendamento;
 $ CREATE TABLE IF NOT EXISTS `motorista` (
 `id` INTEGER NOT NULL auto_increment ,
 `nome` VARCHAR(255)NOT NULL,
+`telefone` VARCHAR(12)NOT NULL,
+`endereco` VARCHAR(255)NOT NULL,
 `cnh` VARCHAR(25)NOT NULL,
-`plantao` INT(1) NOT NULL,
-`endereco` VARCHAR(255),
-`telefone` VARCHAR(12),
 PRIMARY KEY (`id`)) ENGINE=InnoDB;
 ```
 
