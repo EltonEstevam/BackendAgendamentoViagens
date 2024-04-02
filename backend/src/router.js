@@ -9,6 +9,9 @@ const motoristaMiddleware = require("./middlewares/motoristaMiddleware");
 // Listar todos os Registros da tabela Motorista:
 router.get("/motorista", motoristaController.getAll);
 
+// Listar Motorista por ID:
+router.get("/motorista/:id", motoristaController.getID);
+
 // Cadastrar um novo Motorista:
 router.post(
   "/motorista",
