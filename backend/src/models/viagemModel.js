@@ -1,23 +1,34 @@
 const connection = require("./connection");
 
 // Consulta todas as viagens cadastradas no Banco de Dados:
-const getAll = async () => {
+const getALL = async () => {
   const [viagem] = await connection.execute("SELECT * FROM viagem");
   return viagem;
 };
 
+// Consultar Viagem por ID:
+const getID = async (id) => {
+  const [getViagem] = await connection.execute(
+    "SELECT * FROM viagem WHERE id = ?",
+    [id]
+  );
+  return getViagem;
+};
+
 // Criar um novo registro de Viagem:
 const createViagem = async (Viagem) => {
-  const { data_select } = Viagem;
-  const { cartao_sus } = Viagem;
-  const { nome_paciente } = Viagem;
-  const { rg_paciente } = Viagem;
-  const { data_nascimento } = Viagem;
-  const { destino } = Viagem;
-  const { end_destino } = Viagem;
-  const { ponto } = Viagem;
-  const { obs } = Viagem;
-  const { ac } = Viagem;
+  const {
+    data_select,
+    cartao_sus,
+    nome_paciente,
+    rg_paciente,
+    data_nascimento,
+    destino,
+    end_destino,
+    ponto,
+    obs,
+    ac,
+  } = Viagem;
 
   const query =
     "INSERT INTO viagem(data_select, cartao_sus, nome_paciente, rg_paciente, data_nascimento, destino, end_destino, ponto, obs, ac) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
@@ -48,16 +59,18 @@ const deleteViagem = async (id) => {
 
 // Alterar dados cadastrados de Viagens:
 const updateViagem = async (id, Viagem) => {
-  const { data_select } = Viagem;
-  const { cartao_sus } = Viagem;
-  const { nome_paciente } = Viagem;
-  const { rg_paciente } = Viagem;
-  const { data_nascimento } = Viagem;
-  const { destino } = Viagem;
-  const { end_destino } = Viagem;
-  const { ponto } = Viagem;
-  const { obs } = Viagem;
-  const { ac } = Viagem;
+  const {
+    data_select,
+    cartao_sus,
+    nome_paciente,
+    rg_paciente,
+    data_nascimento,
+    destino,
+    end_destino,
+    ponto,
+    obs,
+    ac,
+  } = Viagem;
 
   const query =
     "UPDATE viagem SET data_select = ?, cartao_sus = ?, nome_paciente = ?, rg_paciente = ?, data_nascimento = ?, destino = ?, end_destino = ?, ponto = ?, obs = ?, ac = ? WHERE id = ?";
@@ -79,7 +92,8 @@ const updateViagem = async (id, Viagem) => {
 };
 
 module.exports = {
-  getAll,
+  getALL,
+  getID,
   createViagem,
   deleteViagem,
   updateViagem,

@@ -2,12 +2,6 @@
 
 ## Projeto Integrador I Univesp.
 
-<br>
- <img align="center" src="backend/src/assets/img/1.jpeg" />
-
-<br>
-<br>
- 
 # Tecnologias Utilizadas:
 
 ## Backend
@@ -75,15 +69,58 @@ $ CREATE DATABASE agendamento;
 ### A seguir é necessário criar a tabela de “motorista” que será utilizada pela aplicação.
 
 ```bash
-# Comando para criar a tabela com suas colunas:
 
-$ CREATE TABLE IF NOT EXISTS `motorista` (
-`id` INTEGER NOT NULL auto_increment ,
+## TABELA USUÁRIO ##
+
+$ CREATE TABLE `agendamentos`.`usuario` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `nome` VARCHAR(45) NOT NULL,
+  `email` VARCHAR(255) NOT NULL,
+  `senha` VARCHAR(45) NOT NULL,
+  `confirma` VARCHAR(45) NOT NULL,
+  `data` DATE NOT NULL,
+  `pais` VARCHAR(45) NOT NULL,
+  `estado` VARCHAR(45) NOT NULL,
+  `nivel` INT NOT NULL,
+  PRIMARY KEY (`id`));
+
+## TABELA VIAGEM ##
+
+$ CREATE TABLE `agendamentos`.`viagem` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `data_select` DATE NOT NULL,
+  `cartao_sus` VARCHAR(45) NOT NULL,
+  `nome_paciente` VARCHAR(255) NOT NULL,
+  `rg_paciente` VARCHAR(45) NOT NULL,
+  `data_nascimento` DATE NOT NULL,
+  `destino` VARCHAR(255) NOT NULL,
+  `end_destino` VARCHAR(255) NOT NULL,
+  `ponto` VARCHAR(255) NOT NULL,
+  `obs` TEXT(500),
+  `ac` INT NOT NULL,
+  PRIMARY KEY (`id`));
+
+## TABELA ACOMPANHANTE ##
+
+$ CREATE TABLE `agendamentos`.`acompanhante` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `nome_acompanhante` VARCHAR(255) NOT NULL,
+  `rg_acompanhante` VARCHAR(45) NOT NULL,
+  `sus_acompanhante` VARCHAR(45) NOT NULL,
+  `data_nascimento` DATE NOT NULL,
+  PRIMARY KEY (`id`));
+
+
+## TABELA MOTORISTA ##
+
+$ CREATE TABLE `agendamentos`.`motorista` (
+`id` INTEGER NOT NULL AUTO_INCREMENT,
 `nome` VARCHAR(255)NOT NULL,
 `telefone` VARCHAR(12)NOT NULL,
 `endereco` VARCHAR(255)NOT NULL,
 `cnh` VARCHAR(25)NOT NULL,
 PRIMARY KEY (`id`)) ENGINE=InnoDB;
+
 ```
 
 ### Na raiz do projeto haverá um arquivo chamado ".env.example"
@@ -124,7 +161,7 @@ $ npm start
 
 <br>
 
-# Referências e Créditos para:
+# Referências:
 
 ### Manual do Dev
 
