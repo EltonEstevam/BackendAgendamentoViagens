@@ -166,3 +166,9 @@ $ npm start
 ### Manual do Dev
 
 - <a href="https://github.com/manualdodev"> GitHub
+
+# Colaboradores:
+
+\*\* <a href="https://github.com/Edsonflaviobr"> Edson Flavio
+\*\* <a href="https://github.com/EltonEstevam"> Elton Estevam
+\*\* <a href="https://github.com/MateusFerreira2648"> Mateus Ferreira
