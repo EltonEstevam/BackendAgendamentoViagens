@@ -58,7 +58,7 @@ Installing eslint@latest
 
 ```
 
-### Após clonar o repositório, é necessário criar um banco de dados MySQL e junto uma tabela que sera necessária.
+### Após clonar o repositório, é necessário criar um banco de dados MySQL.
 
 ```bash
 # Comando para criar um banco de dados MySQL no terminal:
@@ -66,7 +66,7 @@ Installing eslint@latest
 $ CREATE DATABASE agendamento;
 ```
 
-### A seguir é necessário criar a tabela de “motorista” que será utilizada pela aplicação.
+### A seguir é necessário criar as tabelas que serão utilizadas pela aplicação.
 
 ```bash
 
@@ -159,7 +159,7 @@ $ npm install
 $ npm start
 ```
 
-<br>
+<br/>
 
 # Referências:
 
@@ -169,6 +169,8 @@ $ npm start
 
 # Colaboradores:
 
-\*\* <a href="https://github.com/Edsonflaviobr"> Edson Flavio
-\*\* <a href="https://github.com/EltonEstevam"> Elton Estevam
-\*\* <a href="https://github.com/MateusFerreira2648"> Mateus Ferreira
+- <a href="https://github.com/Edsonflaviobr"> Edson Flavio
+  <br/>
+- <a href="https://github.com/EltonEstevam"> Elton Estevam
+  <br/>
+- <a href="https://github.com/MateusFerreira2648"> Mateus Ferreira
