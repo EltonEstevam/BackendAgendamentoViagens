@@ -6,6 +6,15 @@ const getAll = async () => {
   return motorista;
 };
 
+// Consultar Motorista por ID:
+const getID = async (id) => {
+  const [getMotorista] = await connection.execute(
+    "SELECT * FROM motorista WHERE id = ?",
+    [id]
+  );
+  return getMotorista;
+};
+
 // Criar um novo cadastro de motorista:
 const createMotorista = async (Motorista) => {
   const { nome } = Motorista;
@@ -57,6 +66,7 @@ const updateMotorista = async (id, Motorista) => {
 
 module.exports = {
   getAll,
+  getID,
   createMotorista,
   deleteMotorista,
   updateMotorista,

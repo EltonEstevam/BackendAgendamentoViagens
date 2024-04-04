@@ -7,6 +7,14 @@ const getAll = async (_request, response) => {
 
   //return response.status(200).json({ messege: "Controller esta Funcionando!" });
 };
+
+// Selecionar Motorista por ID:
+const getID = async (request, response) => {
+  const { id } = request.params;
+  const getMotorista = await motoristaModel.getID(id);
+  return response.status(200).json(getMotorista);
+};
+
 // Criar um novo cadastro de Motorista:
 const createMotorista = async (request, response) => {
   const createdMotorista = await motoristaModel.createMotorista(request.body);
@@ -32,6 +40,7 @@ const updateMotorista = async (request, response) => {
 
 module.exports = {
   getAll,
+  getID,
   createMotorista,
   deleteMotorista,
   updateMotorista,
