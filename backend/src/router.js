@@ -18,6 +18,10 @@ const acompanhanteMiddleware = require("./middlewares/acompanhanteMiddleware");
 // Rotas para o Modulo motoristaController e motoristaMiddleware:
 const motoristaController = require("./controllers/motoristaController");
 const motoristaMiddleware = require("./middlewares/motoristaMiddleware");
+// ---------------------------------------------------------------------------
+// Rotas para o Modulo veiculoController e veiculoMiddleware:
+const veiculoController = require("./controllers/veiculoController");
+const veiculoMiddleware = require("./middlewares/veiculoMiddleware");
 
 // ---------------------------------------------------------------------------
 // Listar todos os Registros da tabela usuario:
@@ -37,7 +41,7 @@ router.post(
   usuarioController.createUsuario
 );
 // ---------------------------------------------------------------------------
-// Excluir casdastro de usuario informando o ID:
+// Excluir Usuario informando o ID:
 router.delete("/usuario/:id", usuarioController.deleteUsuario);
 // ---------------------------------------------------------------------------
 // Alterar cadastro de usuario:
@@ -71,7 +75,7 @@ router.post(
   viagemController.createViagem
 );
 // ---------------------------------------------------------------------------
-// Excluir casdastro de Viagem informando o ID:
+// Excluir Viagem informando o ID:
 router.delete("/viagem/:id", viagemController.deleteViagem);
 // ---------------------------------------------------------------------------
 // Alterar cadastro de Viagem:
@@ -107,7 +111,7 @@ router.post(
   acompanhanteController.createAcompanhante
 );
 // ---------------------------------------------------------------------------
-// Excluir cadastro de acompanhante informando o ID:
+// Excluir acompanhante informando o ID:
 router.delete("/acompanhante/:id", acompanhanteController.deleteAcompanhante);
 // ---------------------------------------------------------------------------
 // Alterar cadastro de acompanhante:
@@ -138,7 +142,7 @@ router.post(
   motoristaController.createMotorista
 );
 // ---------------------------------------------------------------------------
-// Excluir casdastro de motorista informando o ID:
+// Excluir motorista informando o ID:
 router.delete("/motorista/:id", motoristaController.deleteMotorista);
 // ---------------------------------------------------------------------------
 // Alterar cadastro de motorista:
@@ -149,6 +153,36 @@ router.put(
   motoristaMiddleware.validateFieldMatricula,
   motoristaMiddleware.validateFieldFone,
   motoristaController.updateMotorista
+); // ---------------------------------------------------------------------------
+// Listar todos os Registros da tabela veiculo:
+router.get("/veiculo", veiculoController.getAllVeiculos);
+// ---------------------------------------------------------------------------
+// Listar veiculo por ID:
+router.get("/veiculo/:id", veiculoController.getID);
+// ---------------------------------------------------------------------------
+// Cadastrar um novo veiculo:
+router.post(
+  "/veiculo",
+  veiculoMiddleware.validateFieldMarca,
+  veiculoMiddleware.validateFieldModelo,
+  veiculoMiddleware.validateFieldPlaca,
+  veiculoMiddleware.validateFieldCAP,
+  veiculoMiddleware.validateFieldKM,
+  veiculoController.createVeiculo
+);
+// ---------------------------------------------------------------------------
+// Excluir veiculo informando o ID:
+router.delete("/veiculo/:id", veiculoController.deleteVeiculo);
+// ---------------------------------------------------------------------------
+// Alterar cadastro de veiculo:
+router.put(
+  "/veiculo/:id",
+  veiculoMiddleware.validateFieldMarca,
+  veiculoMiddleware.validateFieldModelo,
+  veiculoMiddleware.validateFieldPlaca,
+  veiculoMiddleware.validateFieldCAP,
+  veiculoMiddleware.validateFieldKM,
+  veiculoController.updateVeiculo
 );
 // ---------------------------------------------------------------------------
 module.exports = router;
