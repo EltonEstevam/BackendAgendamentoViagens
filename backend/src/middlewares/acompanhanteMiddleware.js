@@ -1,3 +1,4 @@
+// ---------------------------------------------------------------------------
 // Validar o campo Nome do acompanhante:
 const validateFieldNome = (request, response, next) => {
   const { body } = request;
@@ -16,7 +17,7 @@ const validateFieldNome = (request, response, next) => {
 
   next();
 };
-
+// ---------------------------------------------------------------------------
 // Validar o campo RG do acompanhante:
 const validateFieldRG = (request, response, next) => {
   const { body } = request;
@@ -35,53 +36,48 @@ const validateFieldRG = (request, response, next) => {
 
   next();
 };
-
-// Validar o campo SUS do acompanhante:
-const validateFieldSUS = (request, response, next) => {
+// ---------------------------------------------------------------------------
+// Validar o campo Endereço do acompanhante:
+const validateFieldEND = (request, response, next) => {
   const { body } = request;
 
-  if (body.sus_acompanhante === undefined) {
+  if (body.end_acompanhante === undefined) {
     return response
       .status(400)
-      .json({ message: "O campo SUS do acompanhante é obrigatório." });
+      .json({ message: "O campo Endereço do acompanhante é obrigatório." });
   }
 
-  if (body.sus_acompanhante === "") {
-    return response
-      .status(400)
-      .json({ message: "O campo SUS do acompanhante não pode estar vazio." });
+  if (body.end_acompanhante === "") {
+    return response.status(400).json({
+      message: "O campo Endereço do acompanhante não pode estar vazio.",
+    });
   }
 
   next();
 };
-
-// Validar o campo Data de Nascimento do acompanhante:
-const validateFieldDataNascimento = (request, response, next) => {
+// ---------------------------------------------------------------------------
+// Validar o campo Ponto do acompanhante:
+const validateFieldPonto = (request, response, next) => {
   const { body } = request;
 
-  if (body.data_nascimento === undefined) {
-    return response
-      .status(400)
-      .json({
-        message: "O campo Data de Nascimento do acompanhante é obrigatório.",
-      });
+  if (body.ponto_acompanhante === undefined) {
+    return response.status(400).json({
+      message: "O campo Ponto do acompanhante é obrigatório.",
+    });
   }
 
-  if (body.data_nascimento === "") {
-    return response
-      .status(400)
-      .json({
-        message:
-          "O campo Data de Nascimento do acompanhante não pode estar vazio.",
-      });
+  if (body.ponto_acompanhante === "") {
+    return response.status(400).json({
+      message: "O campo Ponto do acompanhante não pode estar vazio.",
+    });
   }
 
   next();
 };
-
+// ---------------------------------------------------------------------------
 module.exports = {
   validateFieldNome,
   validateFieldRG,
-  validateFieldSUS,
-  validateFieldDataNascimento,
+  validateFieldEND,
+  validateFieldPonto,
 };

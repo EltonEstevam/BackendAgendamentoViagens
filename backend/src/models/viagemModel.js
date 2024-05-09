@@ -1,11 +1,5 @@
 const connection = require("./connection");
-
-// Consulta todas as viagens cadastradas no Banco de Dados:
-const getALL = async () => {
-  const [viagem] = await connection.execute("SELECT * FROM viagem");
-  return viagem;
-};
-
+//------------------------------------------------------------------
 // Consultar Viagem por ID:
 const getID = async (id) => {
   const [getViagem] = await connection.execute(
@@ -14,40 +8,44 @@ const getID = async (id) => {
   );
   return getViagem;
 };
-
+//------------------------------------------------------------------
+// Consulta todas as viagens cadastradas no Banco de Dados:
+const getALL = async () => {
+  const [viagem] = await connection.execute("SELECT * FROM viagem");
+  return viagem;
+};
+//------------------------------------------------------------------
 // Criar um novo registro de Viagem:
 const createViagem = async (Viagem) => {
   const {
     data_select,
-    cartao_sus,
     nome_paciente,
     rg_paciente,
-    data_nascimento,
+    tel_paciente,
     destino,
     end_destino,
-    ponto,
+    ponto_paciente,
     obs,
     ac,
   } = Viagem;
 
   const query =
-    "INSERT INTO viagem(data_select, cartao_sus, nome_paciente, rg_paciente, data_nascimento, destino, end_destino, ponto, obs, ac) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    "INSERT INTO viagem(data_select, nome_paciente, rg_paciente, tel_paciente, destino, end_destino, ponto_paciente, obs, ac) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
   const [createViagem] = await connection.execute(query, [
     data_select,
-    cartao_sus,
     nome_paciente,
     rg_paciente,
-    data_nascimento,
+    tel_paciente,
     destino,
     end_destino,
-    ponto,
+    ponto_paciente,
     obs,
     ac,
   ]);
   return { insertId: createViagem.insertId };
 };
-
+//------------------------------------------------------------------
 // Excluir cadastro de Viagem:
 const deleteViagem = async (id) => {
   const [removedViagem] = await connection.execute(
@@ -56,44 +54,42 @@ const deleteViagem = async (id) => {
   );
   return removedViagem;
 };
-
+//------------------------------------------------------------------
 // Alterar dados cadastrados de Viagens:
 const updateViagem = async (id, Viagem) => {
   const {
     data_select,
-    cartao_sus,
     nome_paciente,
     rg_paciente,
-    data_nascimento,
+    tel_paciente,
     destino,
     end_destino,
-    ponto,
+    ponto_paciente,
     obs,
     ac,
   } = Viagem;
 
   const query =
-    "UPDATE viagem SET data_select = ?, cartao_sus = ?, nome_paciente = ?, rg_paciente = ?, data_nascimento = ?, destino = ?, end_destino = ?, ponto = ?, obs = ?, ac = ? WHERE id = ?";
+    "UPDATE viagem SET data_select = ?, nome_paciente = ?, rg_paciente = ?, tel_paciente = ?, destino = ?, end_destino = ?, ponto_paciente = ?, obs = ?, ac = ? WHERE id = ?";
 
   const [updatedViagem] = await connection.execute(query, [
     data_select,
-    cartao_sus,
     nome_paciente,
     rg_paciente,
-    data_nascimento,
+    tel_paciente,
     destino,
     end_destino,
-    ponto,
+    ponto_paciente,
     obs,
     ac,
     id,
   ]);
   return updatedViagem;
 };
-
+//------------------------------------------------------------------
 module.exports = {
-  getALL,
   getID,
+  getALL,
   createViagem,
   deleteViagem,
   updateViagem,
