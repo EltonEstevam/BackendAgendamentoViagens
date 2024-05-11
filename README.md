@@ -58,15 +58,15 @@ Installing eslint@latest
 
 ```
 
-### Após clonar o repositório, é necessário criar um banco de dados MySQL e junto uma tabela que sera necessária.
+### Após clonar o repositório, é necessário criar um banco de dados MySQL.
 
 ```bash
 # Comando para criar um banco de dados MySQL no terminal:
 
-$ CREATE DATABASE agendamento;
+$ CREATE DATABASE agendamentos;
 ```
 
-### A seguir é necessário criar a tabela de “motorista” que será utilizada pela aplicação.
+### A seguir é necessário criar as tabelas que serão utilizadas pela aplicação.
 
 ```bash
 
@@ -79,47 +79,60 @@ $ CREATE TABLE `agendamentos`.`usuario` (
   `senha` VARCHAR(45) NOT NULL,
   `confirma` VARCHAR(45) NOT NULL,
   `data` DATE NOT NULL,
-  `pais` VARCHAR(45) NOT NULL,
-  `estado` VARCHAR(45) NOT NULL,
+  `matricula` VARCHAR(45) NOT NULL,
   `nivel` INT NOT NULL,
-  PRIMARY KEY (`id`));
+  PRIMARY KEY (`id`)) ENGINE=InnoDB;
+
+# Sobre os niveis de usuario do sistema:
+Nivel: 1 leitura
+Nivel: 2 Operador
+Nivel: 3 Admin
 
 ## TABELA VIAGEM ##
 
 $ CREATE TABLE `agendamentos`.`viagem` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `data_select` DATE NOT NULL,
-  `cartao_sus` VARCHAR(45) NOT NULL,
   `nome_paciente` VARCHAR(255) NOT NULL,
   `rg_paciente` VARCHAR(45) NOT NULL,
-  `data_nascimento` DATE NOT NULL,
+  `tel_paciente` VARCHAR(15) NOT NULL,
   `destino` VARCHAR(255) NOT NULL,
   `end_destino` VARCHAR(255) NOT NULL,
-  `ponto` VARCHAR(255) NOT NULL,
+  `ponto_paciente` VARCHAR(255) NOT NULL,
   `obs` TEXT(500),
   `ac` INT NOT NULL,
-  PRIMARY KEY (`id`));
+  PRIMARY KEY (`id`)) ENGINE=InnoDB;
 
 ## TABELA ACOMPANHANTE ##
 
 $ CREATE TABLE `agendamentos`.`acompanhante` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `nome_acompanhante` VARCHAR(255) NOT NULL,
-  `rg_acompanhante` VARCHAR(45) NOT NULL,
-  `sus_acompanhante` VARCHAR(45) NOT NULL,
-  `data_nascimento` DATE NOT NULL,
-  PRIMARY KEY (`id`));
-
+`id` INT NOT NULL AUTO_INCREMENT,
+`nome_acompanhante` VARCHAR(255) NOT NULL,
+`rg_acompanhante` VARCHAR(45) NOT NULL,
+`end_acompanhante` VARCHAR(255) NOT NULL,
+`ponto_acompanhante` VARCHAR(255) NOT NULL,
+PRIMARY KEY (`id`)) ENGINE=InnoDB;
 
 ## TABELA MOTORISTA ##
 
 $ CREATE TABLE `agendamentos`.`motorista` (
 `id` INTEGER NOT NULL AUTO_INCREMENT,
 `nome` VARCHAR(255)NOT NULL,
-`telefone` VARCHAR(12)NOT NULL,
-`endereco` VARCHAR(255)NOT NULL,
 `cnh` VARCHAR(25)NOT NULL,
+`matricula` VARCHAR(100)NOT NULL,
+`telefone` VARCHAR(15)NOT NULL,
 PRIMARY KEY (`id`)) ENGINE=InnoDB;
+
+## TABELA VEICULOS ##
+
+$ CREATE TABLE IF NOT EXISTS veiculo (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    marca VARCHAR(255) NOT NULL,
+    modelo VARCHAR(255) NOT NULL,
+    placa VARCHAR(10) UNIQUE NOT NULL,
+    capacidade INT NOT NULL,
+    km_atual DECIMAL (6,2),
+    obs TEXT(500)) ENGINE=InnoDB;
 
 ```
 
@@ -159,7 +172,7 @@ $ npm install
 $ npm start
 ```
 
-<br>
+<br/>
 
 # Referências:
 
@@ -169,6 +182,8 @@ $ npm start
 
 # Colaboradores:
 
-\*\* <a href="https://github.com/Edsonflaviobr"> Edson Flavio
-\*\* <a href="https://github.com/EltonEstevam"> Elton Estevam
-\*\* <a href="https://github.com/MateusFerreira2648"> Mateus Ferreira
+- <a href="https://github.com/Edsonflaviobr"> Edson Flavio
+  <br/>
+- <a href="https://github.com/EltonEstevam"> Elton Estevam
+  <br/>
+- <a href="https://github.com/MateusFerreira2648"> Mateus Ferreira

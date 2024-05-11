@@ -22,7 +22,8 @@ const motoristaMiddleware = require("./middlewares/motoristaMiddleware");
 // Rotas para o Modulo veiculoController e veiculoMiddleware:
 const veiculoController = require("./controllers/veiculoController");
 const veiculoMiddleware = require("./middlewares/veiculoMiddleware");
-
+// Rotas para o Modulo viagemAController:
+const viagemAController = require("./controllers/viagemAController");
 // ---------------------------------------------------------------------------
 // Listar todos os Registros da tabela usuario:
 router.get("/usuario", usuarioController.getAllUsuarios);
@@ -44,7 +45,7 @@ router.post(
 // Excluir Usuario informando o ID:
 router.delete("/usuario/:id", usuarioController.deleteUsuario);
 // ---------------------------------------------------------------------------
-// Alterar cadastro de usuario:
+// Alterar Cadastro de usuario:
 router.put(
   "/usuario/:id",
   usuarioMiddleware.validateFieldNome,
@@ -124,8 +125,6 @@ router.put(
   acompanhanteController.updateAcompanhante
 );
 // ---------------------------------------------------------------------------
-// ---------------------------------------------------------------------------
-
 // Listar todos os Registros da tabela motorista:
 router.get("/motorista", motoristaController.getAll);
 // ---------------------------------------------------------------------------
@@ -185,4 +184,27 @@ router.put(
   veiculoController.updateVeiculo
 );
 // ---------------------------------------------------------------------------
+
+// Listar Viagem e Acompanhante por ID:
+router.get("/viagem/acompanhante/:id", viagemAController.getID);
+// Listar todas as viagens incluindo Acompanhantes:
+router.get("/viagens", viagemAController.getViagens);
+
+// Cadastrar uma nova Viagem com Acompanhante:
+router.post(
+  "/viagem/acompanhante",
+  viagemMiddleware.validateFieldData,
+  viagemMiddleware.validateFieldNome,
+  viagemMiddleware.validateFieldRG,
+  viagemMiddleware.validateFieldTEL,
+  viagemMiddleware.validateFieldDES,
+  viagemMiddleware.validateFieldEND,
+  viagemMiddleware.validateFieldPON,
+  acompanhanteMiddleware.validateFieldNome,
+  acompanhanteMiddleware.validateFieldRG,
+  acompanhanteMiddleware.validateFieldEND,
+  acompanhanteMiddleware.validateFieldPonto,
+  viagemAController.createViagemAcompanhante
+);
+
 module.exports = router;
