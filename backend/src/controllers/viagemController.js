@@ -2,8 +2,9 @@ const viagemModel = require("../models/viagemModel");
 //------------------------------------------------------------------
 // Selecionar todos os cadastros:
 const getALL = async (_request, response) => {
-  const viagen = await viagemModel.getALL();
-  return response.status(200).json(viagen);
+  const viagem = await viagemModel.getALL();
+
+  return response.status(200).json(viagem);
 
   //return response.status(200).json({ messege: "Controller esta Funcionando!" });
 };
@@ -12,6 +13,7 @@ const getALL = async (_request, response) => {
 const getID = async (request, response) => {
   const { id } = request.params;
   const getID = await viagemModel.getID(id);
+
   return response.status(200).json(getID);
 };
 //------------------------------------------------------------------
