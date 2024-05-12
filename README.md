@@ -131,7 +131,7 @@ $ CREATE TABLE IF NOT EXISTS veiculo (
     modelo VARCHAR(255) NOT NULL,
     placa VARCHAR(10) UNIQUE NOT NULL,
     capacidade INT NOT NULL,
-    km_atual DECIMAL (6,2),
+    km_atual DECIMAL (6,3),
     obs TEXT(500)) ENGINE=InnoDB;
 
 ```
