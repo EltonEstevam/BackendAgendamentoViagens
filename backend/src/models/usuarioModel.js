@@ -62,7 +62,7 @@ const updateUsuario = async (id, usuario) => {
 //Validar Usuario com Email e Senha:
 const validarUsuario = async (credenciais) => {
   const { email, senha } = credenciais;
-  const query = "SELECT id FROM usuario WHERE email = ? AND senha = ?";
+  const query = "SELECT id,nivel FROM usuario WHERE email = ? AND senha = ?";
   const [Credencial] = await connection.execute(query, [email, senha]);
   return Credencial;
 };

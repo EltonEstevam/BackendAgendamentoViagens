@@ -23,7 +23,7 @@ const createUsuario = async (request, response) => {
   return response.status(201).json(createdUsuario);
 };
 //------------------------------------------------------------------
-// Deletar um usuario:
+// Deletar Usuario:
 const deleteUsuario = async (request, response) => {
   const { id } = request.params;
 
@@ -31,7 +31,7 @@ const deleteUsuario = async (request, response) => {
   return response.status(204).json();
 };
 //------------------------------------------------------------------
-// Atualizar um usuario:
+// Atualizar Usuario:
 const updateUsuario = async (request, response) => {
   const { id } = request.params;
 
@@ -46,7 +46,6 @@ const validaUsuario = async (request, response) => {
   // Função para verificar se o ID existe:
   function verificaUsuario(Credencial) {
     const id = Credencial[0];
-    //console.log(id);
     if (id) {
       return true;
     } else {
