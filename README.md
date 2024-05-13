@@ -58,6 +58,24 @@ Installing eslint@latest
 
 ```
 
+### Modificada a conexão com o servidor para SSL:
+
+```bash
+npm install https
+
+```
+
+### Atenção a partir da versão: 1.0.6, todas as requisições para o servidor devem ser com https://
+
+### Em ambiente de desenvolvimento deve ser desativar a validação do certificado SSL.
+
+### Corrigido algumas vulnerabilidades do mysql2
+
+```bash
+npm audit fix
+
+```
+
 ### Após clonar o repositório, é necessário criar um banco de dados MySQL.
 
 ```bash
@@ -125,7 +143,7 @@ PRIMARY KEY (`id`)) ENGINE=InnoDB;
 
 ## TABELA VEICULOS ##
 
-$ CREATE TABLE IF NOT EXISTS veiculo (
+$ CREATE TABLE `agendamentos`.`veiculo` (
     id INT AUTO_INCREMENT PRIMARY KEY,
     marca VARCHAR(255) NOT NULL,
     modelo VARCHAR(255) NOT NULL,
@@ -170,6 +188,14 @@ $ npm install
 # Comando para iniciar o servidor.
 
 $ npm start
+```
+
+### Modo debug do Servidor.
+
+```bash
+# Comando para iniciar o servidor em modo debug.
+
+$ npm run dev
 ```
 
 <br/>
