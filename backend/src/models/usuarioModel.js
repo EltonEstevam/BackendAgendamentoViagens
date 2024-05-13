@@ -59,10 +59,20 @@ const updateUsuario = async (id, usuario) => {
   return updatedUsuario;
 };
 //------------------------------------------------------------------
+//Validar Usuario com Email e Senha:
+const validarUsuario = async (credenciais) => {
+  const { email, senha } = credenciais;
+  const query = "SELECT id FROM usuario WHERE email = ? AND senha = ?";
+  const [Credencial] = await connection.execute(query, [email, senha]);
+  return Credencial;
+};
+
+//------------------------------------------------------------------
 module.exports = {
   getID,
   getAllUsuarios,
   createUsuario,
   deleteUsuario,
   updateUsuario,
+  validarUsuario,
 };

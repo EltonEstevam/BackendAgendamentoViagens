@@ -25,6 +25,7 @@ const veiculoMiddleware = require("./middlewares/veiculoMiddleware");
 // Rotas para o Modulo viagemAController:
 const viagemAController = require("./controllers/viagemAController");
 // ---------------------------------------------------------------------------
+
 // Listar todos os Registros da tabela usuario:
 router.get("/usuario", usuarioController.getAllUsuarios);
 // ---------------------------------------------------------------------------
@@ -54,6 +55,14 @@ router.put(
   usuarioMiddleware.validateFieldDATA,
   usuarioMiddleware.validateFieldMatricula,
   usuarioController.updateUsuario
+);
+
+// Login de usuario no sistema:
+router.post(
+  "/usuario/login",
+  usuarioMiddleware.validateFieldEmail,
+  usuarioMiddleware.validateFieldSenha,
+  usuarioController.validaUsuario
 );
 
 // ---------------------------------------------------------------------------
