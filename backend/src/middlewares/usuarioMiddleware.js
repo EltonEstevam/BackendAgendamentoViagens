@@ -91,10 +91,29 @@ const validateFieldMatricula = (request, response, next) => {
   next();
 };
 //------------------------------------------------------------------
+// Se roles não for definido por padrão ele recebe o valor 1.
+const validateFieldRoles = (request, response, next) => {
+  const { body } = request;
+
+  if (body.roles === undefined) {
+    return response
+      .status(400)
+      .json({ message: "O campo roles é obrigatório." });
+  }
+
+  if (body.roles === "") {
+    return response
+      .status(400)
+      .json({ message: "O campo roles não pode estar vazio." });
+  }
+
+  next();
+};
+//------------------------------------------------------------------
 module.exports = {
   validateFieldNome,
   validateFieldEmail,
   validateFieldSenha,
-  validateFieldDATA,
   validateFieldMatricula,
+  validateFieldRoles,
 };

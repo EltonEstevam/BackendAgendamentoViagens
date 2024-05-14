@@ -26,7 +26,7 @@ const veiculoMiddleware = require("./middlewares/veiculoMiddleware");
 const viagemAController = require("./controllers/viagemAController");
 // ---------------------------------------------------------------------------
 
-// Listar todos os Registros da tabela usuario:
+// Listar todos os usuarios:
 router.get("/usuario", usuarioController.getAllUsuarios);
 // ---------------------------------------------------------------------------
 // Listar usuario por ID:
@@ -38,22 +38,22 @@ router.post(
   usuarioMiddleware.validateFieldNome,
   usuarioMiddleware.validateFieldEmail,
   usuarioMiddleware.validateFieldSenha,
-  usuarioMiddleware.validateFieldDATA,
   usuarioMiddleware.validateFieldMatricula,
+  usuarioMiddleware.validateFieldRoles,
   usuarioController.createUsuario
 );
 // ---------------------------------------------------------------------------
 // Excluir Usuario informando o ID:
 router.delete("/usuario/:id", usuarioController.deleteUsuario);
 // ---------------------------------------------------------------------------
-// Alterar Cadastro de usuario:
+// Alterar Cadastro de usuario informando o ID :
 router.put(
   "/usuario/:id",
   usuarioMiddleware.validateFieldNome,
   usuarioMiddleware.validateFieldEmail,
   usuarioMiddleware.validateFieldSenha,
-  usuarioMiddleware.validateFieldDATA,
   usuarioMiddleware.validateFieldMatricula,
+  usuarioMiddleware.validateFieldRoles,
   usuarioController.updateUsuario
 );
 
