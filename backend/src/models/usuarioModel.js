@@ -9,25 +9,25 @@ const getID = async (id) => {
   return getUsuario;
 };
 //------------------------------------------------------------------
+// Retorna todos os usuarios cadastrados.
 const getAllUsuarios = async () => {
   const [usuarios] = await connection.execute("SELECT * FROM usuario");
   return usuarios;
 };
 
 const createUsuario = async (usuario) => {
-  const { nome, email, senha, confirma, data, matricula, nivel } = usuario;
+  const { nome, email, senha, confirma, matricula, roles } = usuario;
 
   const query =
-    "INSERT INTO usuario(nome, email, senha, confirma, data, matricula, nivel) VALUES (?, ?, ?, ?, ?, ?, ?)";
+    "INSERT INTO usuario(nome, email, senha, confirma, matricula, roles) VALUES (?, ?, ?, ?, ?, ?)";
 
   const [createdUsuario] = await connection.execute(query, [
     nome,
     email,
     senha,
     confirma,
-    data,
     matricula,
-    nivel,
+    roles,
   ]);
   return { insertId: createdUsuario.insertId };
 };
@@ -41,19 +41,18 @@ const deleteUsuario = async (id) => {
 };
 //------------------------------------------------------------------
 const updateUsuario = async (id, usuario) => {
-  const { nome, email, senha, confirma, data, matricula, nivel } = usuario;
+  const { nome, email, senha, confirma, matricula, roles } = usuario;
 
   const query =
-    "UPDATE usuario SET nome = ?, email = ?, senha = ?, confirma = ?, data = ?, matricula = ?, nivel = ? WHERE id = ?";
+    "UPDATE usuario SET nome = ?, email = ?, senha = ?, confirma = ?, matricula = ?, roles = ? WHERE id = ?";
 
   const [updatedUsuario] = await connection.execute(query, [
     nome,
     email,
     senha,
     confirma,
-    data,
     matricula,
-    nivel,
+    roles,
     id,
   ]);
   return updatedUsuario;
@@ -62,7 +61,7 @@ const updateUsuario = async (id, usuario) => {
 //Validar Usuario com Email e Senha:
 const validarUsuario = async (credenciais) => {
   const { email, senha } = credenciais;
-  const query = "SELECT id,nivel FROM usuario WHERE email = ? AND senha = ?";
+  const query = "SELECT id,roles FROM usuario WHERE email = ? AND senha = ?";
   const [Credencial] = await connection.execute(query, [email, senha]);
   return Credencial;
 };
