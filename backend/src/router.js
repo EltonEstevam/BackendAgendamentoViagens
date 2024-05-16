@@ -207,8 +207,9 @@ router.get("/viagens", viagemAController.getViagens);
 
 // Cadastrar uma nova Viagem com Acompanhante:
 router.post(
-  "/viagem/acompanhante",
+  "/viagem/acompanhante/:id",
   viagemMiddleware.validateFieldData,
+  viagemMiddleware.validateFieldHora,
   viagemMiddleware.validateFieldNome,
   viagemMiddleware.validateFieldRG,
   viagemMiddleware.validateFieldTEL,
@@ -220,6 +221,24 @@ router.post(
   acompanhanteMiddleware.validateFieldEND,
   acompanhanteMiddleware.validateFieldPonto,
   viagemAController.createViagemAcompanhante
+);
+
+// Alterar uma nova Viagem com Acompanhante:
+router.put(
+  "/viagem/acompanhante/alterar/:id",
+  viagemMiddleware.validateFieldData,
+  viagemMiddleware.validateFieldHora,
+  viagemMiddleware.validateFieldNome,
+  viagemMiddleware.validateFieldRG,
+  viagemMiddleware.validateFieldTEL,
+  viagemMiddleware.validateFieldDES,
+  viagemMiddleware.validateFieldEND,
+  viagemMiddleware.validateFieldPON,
+  acompanhanteMiddleware.validateFieldNome,
+  acompanhanteMiddleware.validateFieldRG,
+  acompanhanteMiddleware.validateFieldEND,
+  acompanhanteMiddleware.validateFieldPonto,
+  viagemAController.updateViagemAcompanhante
 );
 
 module.exports = router;

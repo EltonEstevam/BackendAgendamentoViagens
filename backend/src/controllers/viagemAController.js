@@ -95,18 +95,11 @@ const getViagens = async (_request, response) => {
         const acompanhante = await acompanhanteModel.getID(acompanhanteID);
         grupos.push([viagens[i], acompanhante]);
       }
-
-      //console.log(i, acompanhanteID);
     }
-    //console.log(acompanhanteID);
 
     return response.status(200).json(grupos);
   }
-
-  //return response.status(200).json(viagem);
-  //return response.status(200).json({ messege: "Controller esta Funcionando!" });
 };
-
 //------------------------------------------------------------------
 // Criar um novo cadastro de Viagem com Acompanhante:
 const createViagemAcompanhante = async (request, response) => {
@@ -114,9 +107,13 @@ const createViagemAcompanhante = async (request, response) => {
     request.body
   );
   return response.status(201).json(createViagemAcompanhante);
-
-  // Teste de response:
-  //return response.status(201).json(request.body);
+};
+//------------------------------------------------------------------
+// Alterar um cadastro de Viagem com Acompanhante:
+const updateViagemAcompanhante = async (request, response) => {
+  const { id } = request.params;
+  await viagemAModel.updateViagemAcompanhante(id, request.body);
+  return response.status(204).json();
 };
 //------------------------------------------------------------------
 
@@ -125,4 +122,5 @@ module.exports = {
   getNome,
   getViagens,
   createViagemAcompanhante,
+  updateViagemAcompanhante,
 };
