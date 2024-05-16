@@ -1,5 +1,5 @@
 //------------------------------------------------------------------
-// Validar os campos do Formulario de Viagem:
+// Validar o campo Data do Formulario de Viagem:
 
 const validateFieldData = (request, response, next) => {
   const { body } = request;
@@ -14,6 +14,26 @@ const validateFieldData = (request, response, next) => {
     return response
       .status(400)
       .json({ message: "O campo Data da Viagem não pode estar vazio." });
+  }
+
+  next();
+};
+//------------------------------------------------------------------
+// Validar o Campo Hora do Formulario de Viagem:
+
+const validateFieldHora = (request, response, next) => {
+  const { body } = request;
+
+  if (body.hora_select === undefined) {
+    return response
+      .status(400)
+      .json({ message: "O campo Hora da Viagem é obrigatório." });
+  }
+
+  if (body.hora_select === "") {
+    return response
+      .status(400)
+      .json({ message: "O campo Hora da Viagem não pode estar vazio." });
   }
 
   next();
@@ -135,6 +155,7 @@ const validateFieldPON = (request, response, next) => {
 //------------------------------------------------------------------
 module.exports = {
   validateFieldData,
+  validateFieldHora,
   validateFieldNome,
   validateFieldRG,
   validateFieldTEL,

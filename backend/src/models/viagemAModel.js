@@ -25,7 +25,6 @@ const getViagens = async () => {
   return viagems;
 };
 //------------------------------------------------------------------
-
 // Criar um novo registro de Viagem com Acompanhante:
 const createViagemACompanhante = async (ViagemAcompanhante) => {
   const {
@@ -76,10 +75,65 @@ const createViagemACompanhante = async (ViagemAcompanhante) => {
   return { insertId: createViagemACompanhante.insertId };
 };
 //------------------------------------------------------------------
+//------------------------------------------------------------------
+// Alterar dados cadastrados de Viagens e Acompanhante:
+const updateViagemAcompanhante = async (id, ViagemAcompanhante) => {
+  const {
+    data_select,
+    hora_select,
+    nome_paciente,
+    rg_paciente,
+    tel_paciente,
+    destino,
+    end_destino,
+    ponto_paciente,
+    obs,
+    ac,
+    ac_id,
+    nome_acompanhante,
+    rg_acompanhante,
+    end_acompanhante,
+    ponto_acompanhante,
+  } = ViagemAcompanhante;
+
+  const query1 =
+    "UPDATE acompanhante SET nome_acompanhante = ?, rg_acompanhante = ?, end_acompanhante = ?, ponto_acompanhante = ? WHERE id = ?";
+
+  const [updatedAcompanhante] = await connection.execute(query1, [
+    nome_acompanhante,
+    rg_acompanhante,
+    end_acompanhante,
+    ponto_acompanhante,
+    ac_id,
+  ]);
+
+  const idAcompanhante = ac_id;
+
+  const query2 =
+    "UPDATE viagem SET data_select = ?, hora_select = ?, nome_paciente = ?, rg_paciente = ?, tel_paciente = ?, destino = ?, end_destino = ?, ponto_paciente = ?, obs = ?, ac = ?, ac_id = ? WHERE id = ?";
+
+  const [updatedViagemAcompanhante] = await connection.execute(query2, [
+    data_select,
+    hora_select,
+    nome_paciente,
+    rg_paciente,
+    tel_paciente,
+    destino,
+    end_destino,
+    ponto_paciente,
+    obs,
+    ac,
+    idAcompanhante,
+    id,
+  ]);
+
+  return { insertId: updatedViagemAcompanhante.insertId };
+};
 
 module.exports = {
   getID,
   getNome,
   getViagens,
   createViagemACompanhante,
+  updateViagemAcompanhante,
 };
