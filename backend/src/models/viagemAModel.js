@@ -8,6 +8,16 @@ const getID = async (id) => {
   );
   return getViagem;
 };
+
+//------------------------------------------------------------------
+// Consultar Viagem e Acompanhante por Nome:
+const getNome = async (paciente) => {
+  const [getViagem] = await connection.execute(
+    "SELECT * FROM viagem WHERE nome_paciente LIKE CONCAT('%', ?, '%')",
+    [paciente]
+  );
+  return getViagem;
+};
 //------------------------------------------------------------------
 // Consulta todas as viagens cadastradas no Banco de Dados:
 const getViagens = async () => {
@@ -20,6 +30,7 @@ const getViagens = async () => {
 const createViagemACompanhante = async (ViagemAcompanhante) => {
   const {
     data_select,
+    hora_select,
     nome_paciente,
     rg_paciente,
     tel_paciente,
@@ -47,10 +58,11 @@ const createViagemACompanhante = async (ViagemAcompanhante) => {
   const idAcompanhante = createdAcompanhante.insertId;
 
   const query2 =
-    "INSERT INTO viagem(data_select, nome_paciente, rg_paciente, tel_paciente, destino, end_destino, ponto_paciente, obs, ac, ac_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    "INSERT INTO viagem(data_select, hora_select, nome_paciente, rg_paciente, tel_paciente, destino, end_destino, ponto_paciente, obs, ac, ac_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
   const [createViagemACompanhante] = await connection.execute(query2, [
     data_select,
+    hora_select,
     nome_paciente,
     rg_paciente,
     tel_paciente,
@@ -67,6 +79,7 @@ const createViagemACompanhante = async (ViagemAcompanhante) => {
 
 module.exports = {
   getID,
+  getNome,
   getViagens,
   createViagemACompanhante,
 };
