@@ -19,6 +19,7 @@ const getALL = async () => {
 const createViagem = async (Viagem) => {
   const {
     data_select,
+    hora_select,
     nome_paciente,
     rg_paciente,
     tel_paciente,
@@ -30,10 +31,11 @@ const createViagem = async (Viagem) => {
   } = Viagem;
 
   const query =
-    "INSERT INTO viagem(data_select, nome_paciente, rg_paciente, tel_paciente, destino, end_destino, ponto_paciente, obs, ac) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    "INSERT INTO viagem(data_select, hora_select, nome_paciente, rg_paciente, tel_paciente, destino, end_destino, ponto_paciente, obs, ac) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
   const [createViagem] = await connection.execute(query, [
     data_select,
+    hora_select,
     nome_paciente,
     rg_paciente,
     tel_paciente,
@@ -59,6 +61,7 @@ const deleteViagem = async (id) => {
 const updateViagem = async (id, Viagem) => {
   const {
     data_select,
+    hora_select,
     nome_paciente,
     rg_paciente,
     tel_paciente,
@@ -70,10 +73,11 @@ const updateViagem = async (id, Viagem) => {
   } = Viagem;
 
   const query =
-    "UPDATE viagem SET data_select = ?, nome_paciente = ?, rg_paciente = ?, tel_paciente = ?, destino = ?, end_destino = ?, ponto_paciente = ?, obs = ?, ac = ? WHERE id = ?";
+    "UPDATE viagem SET data_select = ?, hora_select = ?, nome_paciente = ?, rg_paciente = ?, tel_paciente = ?, destino = ?, end_destino = ?, ponto_paciente = ?, obs = ?, ac = ? WHERE id = ?";
 
   const [updatedViagem] = await connection.execute(query, [
     data_select,
+    hora_select,
     nome_paciente,
     rg_paciente,
     tel_paciente,

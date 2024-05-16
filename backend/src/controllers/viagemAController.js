@@ -33,6 +33,38 @@ const getID = async (request, response) => {
   }
 };
 //------------------------------------------------------------------
+// Selecionar Viagem e Acompanhante por Nome:
+
+const getNome = async (request, response) => {
+  const { nome_paciente } = request.body;
+  const getNome = await viagemAModel.getNome(nome_paciente);
+  function verificaNome(getNome) {
+    if (getNome[0]) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  let res = verificaNome(getNome);
+  if (res == false) {
+    return response.status(404).json({
+      message: "Paciente não encontrado",
+    });
+  } else {
+    if (getNome[0].ac == 1) {
+      const viagem = getNome;
+      const acompanhanteID = getNome[0].ac_id;
+      const acompanhante = await acompanhanteModel.getID(acompanhanteID);
+      const retorno = { viagem, acompanhante };
+      return response.status(200).json(retorno);
+    } else {
+      return response.status(200).json(getNome);
+    }
+  }
+};
+
+//------------------------------------------------------------------
 // Selecionar todos os cadastros de Viagem e Acompanhante:
 
 const getViagens = async (_request, response) => {
@@ -90,6 +122,7 @@ const createViagemAcompanhante = async (request, response) => {
 
 module.exports = {
   getID,
+  getNome,
   getViagens,
   createViagemAcompanhante,
 };

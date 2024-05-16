@@ -196,6 +196,12 @@ router.put(
 
 // Listar Viagem e Acompanhante por ID:
 router.get("/viagem/acompanhante/:id", viagemAController.getID);
+// Listar Viagem e Acompanhante por Nome do Paciente:
+router.get(
+  "/viagem/paciente/nome",
+  viagemMiddleware.validateFieldNome,
+  viagemAController.getNome
+);
 // Listar todas as viagens incluindo Acompanhantes:
 router.get("/viagens", viagemAController.getViagens);
 
