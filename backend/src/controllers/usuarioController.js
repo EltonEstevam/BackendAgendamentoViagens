@@ -33,9 +33,7 @@ const createUsuario = async (request, response) => {
 
   let res = verificaEmail(validaEmail);
   if (res == true) {
-    return response.status(404).json({
-      message: "Erro: O email ja existe no sistema",
-    });
+    return response.status(404).json();
   } else {
     const createdUsuario = await usuarioModel.createUsuario(request.body);
     return response.status(201).json(createdUsuario);
