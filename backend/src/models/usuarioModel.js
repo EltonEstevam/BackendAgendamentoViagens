@@ -67,6 +67,14 @@ const validarUsuario = async (credenciais) => {
   return Credencial;
 };
 
+// Verificar se o email ja existe no sistema.
+const validarEmail = async (CadEmail) => {
+  const { email } = CadEmail;
+  const query = "SELECT id FROM usuario WHERE email = ?";
+  const [Email] = await connection.execute(query, [email]);
+  return Email;
+};
+
 //------------------------------------------------------------------
 module.exports = {
   getID,
@@ -75,4 +83,5 @@ module.exports = {
   deleteUsuario,
   updateUsuario,
   validarUsuario,
+  validarEmail,
 };
