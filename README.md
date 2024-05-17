@@ -96,21 +96,20 @@ $ CREATE TABLE `agendamentos`.`usuario` (
   `email` VARCHAR(255) NOT NULL,
   `senha` VARCHAR(45) NOT NULL,
   `confirma` VARCHAR(45) NOT NULL,
-  `data` DATE NOT NULL,
   `matricula` VARCHAR(45) NOT NULL,
-  `nivel` INT NOT NULL,
+  `roles` INT,
   PRIMARY KEY (`id`)) ENGINE=InnoDB;
 
 # Sobre os niveis de usuario do sistema:
-Nivel: 1 leitura
-Nivel: 2 Operador
-Nivel: 3 Admin
+Nivel: 1 Operador
+Nivel: 2 Admin
 
 ## TABELA VIAGEM ##
 
 $ CREATE TABLE `agendamentos`.`viagem` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `data_select` DATE NOT NULL,
+  `hora_select` TIME NOT NULL,
   `nome_paciente` VARCHAR(255) NOT NULL,
   `rg_paciente` VARCHAR(45) NOT NULL,
   `tel_paciente` VARCHAR(15) NOT NULL,
@@ -119,6 +118,7 @@ $ CREATE TABLE `agendamentos`.`viagem` (
   `ponto_paciente` VARCHAR(255) NOT NULL,
   `obs` TEXT(500),
   `ac` INT NOT NULL,
+  `ac_id` INT,
   PRIMARY KEY (`id`)) ENGINE=InnoDB;
 
 ## TABELA ACOMPANHANTE ##
