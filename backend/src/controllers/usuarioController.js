@@ -74,9 +74,7 @@ const validaUsuario = async (request, response) => {
 
   let res = verificaUsuario(Credencial);
   if (res == false) {
-    return response.status(404).json({
-      message: "Erro Usuario não encontrado",
-    });
+    return response.status(404).json();
   } else {
     return response.status(200).json(Credencial);
   }
