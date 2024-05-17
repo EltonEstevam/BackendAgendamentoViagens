@@ -19,8 +19,27 @@ const getAllUsuarios = async (_request, response) => {
 //------------------------------------------------------------------
 // Cadastrar um novo usuario:
 const createUsuario = async (request, response) => {
-  const createdUsuario = await usuarioModel.createUsuario(request.body);
-  return response.status(201).json(createdUsuario);
+  const validaEmail = await usuarioModel.validarEmail(request.body);
+
+  // Função para verificar se Email já existe:
+  function verificaEmail(Email) {
+    const email = Email[0];
+    if (email) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  let res = verificaEmail(validaEmail);
+  if (res == true) {
+    return response.status(404).json({
+      message: "Erro: O email ja existe no sistema",
+    });
+  } else {
+    const createdUsuario = await usuarioModel.createUsuario(request.body);
+    return response.status(201).json(createdUsuario);
+  }
 };
 //------------------------------------------------------------------
 // Deletar Usuario:
