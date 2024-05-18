@@ -33,6 +33,7 @@ $ git clone https://github.com/EltonEstevam/BackendAgendamentoViagens.git
 # \BackendAgendamentoViagens\backend> npm init -y
 # \BackendAgendamentoViagens\backend> npm install express cors mysql2 dotenv
 # \BackendAgendamentoViagens\backend> npm install nodemon -D
+# \BackendAgendamentoViagens\backend> npm install dotenv --save-dev
 # \BackendAgendamentoViagens\backend> npx eslint --init
 Need to install the following packages:
 eslint@8.57.0
